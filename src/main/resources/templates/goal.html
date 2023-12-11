@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>目標一覧</title>
+</head>
+<body>
+	<h1>目標一覧</h1>
+	
+	<table border="1">
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+		</tr>
+		
+		<tr>
+			<td th:text="goal:${goal.id}"></td>
+			<td th:text="goal:${goal.name}"></td>
+		</tr>
+	</table>
+	
+
+</body>
+</html>

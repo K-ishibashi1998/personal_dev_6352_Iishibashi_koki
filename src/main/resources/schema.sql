@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS goals;
 DROP TABLE IF EXISTS tasks;
 
 -- 目標テーブル
-CREATE TABLE goalsCREATE USER
+CREATE TABLE goals
 (
 id SERIAL PRIMARY KEY,
 name TEXT
@@ -16,4 +16,3 @@ name TEXT,
 goal_id INTEGER,
 num INTEGER
 );
-

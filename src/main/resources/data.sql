@@ -1,4 +1,4 @@
-data.sql	INSERT INTO goals(name) VALUES('生活習慣直す');
+    INSERT INTO goals(name) VALUES('生活習慣直す');
 	INSERT INTO goals(name) VALUES('Javaを習得する');
 	INSERT INTO goals(name) VALUES('痩せる');
 	
