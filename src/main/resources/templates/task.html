@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>タスク一覧</title>
+</head>
+<body>
+	
+	<h1>やることリスト</h1>
+	
+	<table border="1">
+		<tr>
+			<th>目標</th>
+			<th>達成回数</th>
+			<th>編集</th>
+			
+			
+		</tr>
+		
+		<tr th:each ="task:${tasks}">
+			<td th:text="${task.goalId}"></td>
+			<td th:text="${task.name}"></td>
+			<td th:text="${task.num}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>
