@@ -10,23 +10,33 @@ import jakarta.persistence.Table;
 @Table(name = "goals")
 
 public class Goal {
-	
+
 	//フィールド
-	@Id//主キー
-	@GeneratedValue(strategy=GenerationType.IDENTITY)//自動採番
+	@Id //主キー
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //自動採番
 	private Integer id;
-	private String name; 
-	
+	private String name;
+
+	public Goal() {
+
+	}
+
+	public Goal(Integer Id,String name) {
+		
+		this.id=Id;
+		this.name=name;
+
+	}
+
 	//ゲッター
 	public Integer getId() {
 		return id;
 	}
-	
 
-	
 	public String getName() {
 		return name;
 	}
-	
+
+	//コンストラクタ
 
 }
