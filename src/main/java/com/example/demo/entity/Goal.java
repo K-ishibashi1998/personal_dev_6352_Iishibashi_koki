@@ -27,6 +27,10 @@ public class Goal {
 		this.name=name;
 
 	}
+	
+	public Goal(String name) {
+		this.name = name;
+	}
 
 	//ゲッター
 	public Integer getId() {

@@ -19,6 +19,7 @@ public class Task {
 	private Integer goalId;
 	private String name;
 	private Integer num;
+	
 
 	//ゲッター
 
@@ -34,5 +35,10 @@ public class Task {
 	public Integer getNum() {
 		return num;
 	}
+	
+	public Task(String name) {
+		this.name=name;
+	}
+	
 
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>やることリスト追加画面</title>
+</head>
+
+<body>
+
+	<h1>やることリスト追加</h1>
+
+	<form action="/tasks/create" method="post">
+		
+		<input type="text" name="name" placeholder="タスクを入力してください！">
+		<input type="hidden" name="name"th:value="goal_id">
+		
+		<button >決定</button>
+	</form>
+</body>
+
+</html>

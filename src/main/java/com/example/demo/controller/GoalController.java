@@ -36,13 +36,12 @@ public class GoalController {
 	@PostMapping("/goals/add")
 	public String create(
 			
-			@RequestParam(value="goalId",defaultValue="")Integer goalId,
-			
-			@RequestParam(value="name",defaultValue="")String name,
+			@RequestParam("goal_name")String name,
 			Model model) {
-		
+		System.out.println("@@@@@@@@@@@@@@@");
+		System.out.println(name);
 		//Itemオブジェクトの生成
-		 Goal goal=new Goal(goalId,name);
+		 Goal goal= new Goal(name);
 		//itemテーブルへのデータの反映(INSERT)
 		goalRepository.save(goal);
 		//「/items」にGETでリクエストしなおせ(リダイレクト)
