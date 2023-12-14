@@ -17,22 +17,19 @@ public class Goal {
 	private Integer id;
 	private String name;
 
+	// 外部キー(〇〇_idみたいなやつ)を指定するコンストラクタは必要だが、
+	// 主キー(id)を指定するコンストラクタは不必要
+	
 	public Goal() {
 
 	}
-
-	public Goal(Integer Id,String name) {
-		
-		this.id=Id;
-		this.name=name;
-
-	}
 	
+	// nameだけを指定してgoalオブジェクトを作成するコンストラクタ
 	public Goal(String name) {
 		this.name = name;
 	}
 
-	//ゲッター
+	// ゲッター
 	public Integer getId() {
 		return id;
 	}
@@ -41,6 +38,6 @@ public class Goal {
 		return name;
 	}
 
-	//コンストラクタ
+	// コンストラクタ
 
 }

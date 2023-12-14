@@ -38,9 +38,7 @@ public class GoalController {
 			
 			@RequestParam("goal_name")String name,
 			Model model) {
-		System.out.println("@@@@@@@@@@@@@@@");
-		System.out.println(name);
-		//Itemオブジェクトの生成
+		//Goalオブジェクトの生成
 		 Goal goal= new Goal(name);
 		//itemテーブルへのデータの反映(INSERT)
 		goalRepository.save(goal);
