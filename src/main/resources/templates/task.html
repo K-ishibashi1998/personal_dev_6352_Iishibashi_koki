@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>タスク一覧</title>
+	<meta charset="UTF-8">
+	<title>タスク一覧</title>
 </head>
+
 <body>
-	
+
 	<h1>やることリスト</h1>
-	
-	
-	<input type="button" onclick="location.href='/tasks/add'" value="追加">
-	
+
+	<form action="/tasks/add" method="get">
+		
+		<button>追加</button>
+
+		<input type="hidden" name="goalId" th:value="${goalId}">
+	</form>
 	<table border="1">
 		<tr>
 			<th>目標</th>
 			<th>達成回数</th>
 			<th>編集</th>
-			
-			
+
+
 		</tr>
-		
-		<tr th:each ="task:${tasks}">
+
+		<tr th:each="task:${tasks}">
 			<td th:text="${task.goalId}"></td>
 			<td th:text="${task.name}"></td>
 			<td th:text="${task.num}"></td>
@@ -28,4 +33,5 @@
 	</table>
 
 </body>
+
 </html>

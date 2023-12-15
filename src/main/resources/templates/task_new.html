@@ -9,12 +9,25 @@
 <body>
 
 	<h1>やることリスト追加</h1>
+	
+	<!-- formタグに書かなけばいけない属性は二つあるよ -->
+	<!-- ①action属性 ②method属性 -->
+	
+	<!-- ①action属性はなぜあるのか？ -->
+	<!-- どこにデータを送るのかを指定しています -->
+	
+	<!-- ②method属性はなぜあるのか? -->
+	<!-- @GetMapping以下のメソッドを実行するのか、 -->
+	<!-- @PostMapping以下のメソッドを実行するのかを決めるため -->
+	
+	<!-- javaの「メソッド」という言葉と、HTMLの「メソッド」という言葉は若干違います -->
+	<!-- HTMLで書くメソッドは、HTTPメソッドだと思ってください -->
 
-	<form action="/tasks/create" method="post">
+	<form action="/tasks/add" method="post">
 		
 		<input type="text" name="name" placeholder="タスクを入力してください！">
-		<input type="hidden" name="name"th:value="goal_id">
-		
+		<input type="hidden" name="goalId"th:value="${goalId}">
+
 		<button >決定</button>
 	</form>
 </body>

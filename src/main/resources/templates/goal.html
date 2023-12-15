@@ -15,7 +15,7 @@
 
 
 	<table border="1">
-		
+
 		<input type="button" onclick="location.href='/goals/add'" value="追加">
 		<tr>
 			<th>目標</th>
@@ -25,12 +25,15 @@
 		<tr th:each="goal:${goals}">
 			<td th:text="${goal.id}"></td>
 			<td>
-
-				<a th:href="'/tasks?goalId='+${goal.id}" th:text="${goal.name}"></a>
-
-
-				
-
+				<a th:href="'/goals/'+${goal.id}+'/tasks'">
+					[[${goal.name}]]
+				</a>
+<!--				この書き方は、検索時に用いる書き方-->
+<!--				<a th:href="'tasks/?goalId='+${goal.id}"></a>-->
+			</td>
+			<td>
+				<!--				<a th:href="/goal/3/edit" th:text="${goal.name}"></a>-->
+				<a th:href="'/goal/'+${goal.id}+'/edit'">編集</a>
 			</td>
 		</tr>
 	</table>

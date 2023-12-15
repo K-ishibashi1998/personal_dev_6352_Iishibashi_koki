@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,6 +45,31 @@ public class GoalController {
 		goalRepository.save(goal);
 		//「/items」にGETでリクエストしなおせ(リダイレクト)
 		return "redirect:/goals";
+	}
+	
+	@GetMapping("/goal/{id}/edit")
+	public String edit(
+			@PathVariable("id") Integer id,
+			Model model) {
+
+		Goal goal = goalRepository.findById(id).get();
+		model.addAttribute("goal", goal);
+		return "goal_edit";
+
+	}
+	
+	
+	@PostMapping("/goal/{id}/edit")
+	public String update(
+			@PathVariable("id")Integer id,
+			@RequestParam()
+			Model model) {
+		
+		Goal goal = goalRepository.findById(id).get();
+		model.addAttribute("goal",goal);
+		return "goal_edit";
+		
+		
 	}
 
 }

@@ -15,14 +15,12 @@ public class Task {
 	@Id //主キー
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //自動採番
 	private Integer id;
-	@Column(name="goal_id")
+	@Column(name = "goal_id")
 	private Integer goalId;
 	private String name;
 	private Integer num;
-	
 
 	//ゲッター
-
 
 	public Integer getGoalId() {
 		return goalId;
@@ -35,10 +33,15 @@ public class Task {
 	public Integer getNum() {
 		return num;
 	}
-	
-	public Task(String name) {
-		this.name=name;
+
+	public Task() {
+
 	}
-	
+
+	public Task(String name ,Integer goalId) {
+		this.name = name;
+		this.goalId = goalId;
+	}
+
 
 }
