@@ -11,26 +11,36 @@
 	<h1>やることリスト</h1>
 
 	<form action="/tasks/add" method="get">
-		
+
 		<button>追加</button>
 
 		<input type="hidden" name="goalId" th:value="${goalId}">
 	</form>
 	<table border="1">
 		<tr>
-			<th>目標</th>
+			<th>タスク名</th>
 			<th>達成回数</th>
 			<th>編集</th>
-
-
+			
 		</tr>
 
 		<tr th:each="task:${tasks}">
-			<td th:text="${task.goalId}"></td>
+
 			<td th:text="${task.name}"></td>
 			<td th:text="${task.num}"></td>
+
+			<td>
+				<form th:action="'/goals/'+${goalId}+'/tasks/'+${task.id}+'/edit'" method="get">
+					<button>編集</button>
+				</form>	
+			</td>
+
 		</tr>
+
+
+
 	</table>
+
 
 </body>
 

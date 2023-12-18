@@ -37,6 +37,11 @@ public class Goal {
 	public String getName() {
 		return name;
 	}
+	
+	// 与えられた引数でオブジェクトのフィールドを書き換えるのがセッター
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	// コンストラクタ
 

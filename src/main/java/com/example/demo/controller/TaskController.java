@@ -20,9 +20,6 @@ public class TaskController {
 	@Autowired
 	TaskRepository taskRepository;
 
-	
-
-
 	//taskカテゴリーによる絞り込み
 	@GetMapping("/goals/{goalId}/tasks")
 	public String tasks(
@@ -32,26 +29,25 @@ public class TaskController {
 		//task一覧情報の取得
 		List<Task> taskList = null;
 		if (goalId == null) {
-			return "redirect:/"; 
+			return "redirect:/";
 		} else {
 			//taskテーブルからカテゴリーIDを指定して一覧を取得
 			taskList = taskRepository.findByGoalId(goalId);
-			model.addAttribute("tasks",taskList);
-			model.addAttribute("goalId",goalId);
+			model.addAttribute("tasks", taskList);
+			model.addAttribute("goalId", goalId);
 		}
 		return "/task";
-			
+
 	}
-	
+
 	// やることリストの追加画面の表示をしているメソッド
 	@GetMapping("/tasks/add")
 	public String create(
-			@RequestParam(name="goalId",defaultValue="")Integer goalId,
+			@RequestParam(name = "goalId", defaultValue = "") Integer goalId,
 			Model model) {
-		
-		
-		model.addAttribute("goalId",goalId);
-		
+
+		model.addAttribute("goalId", goalId);
+
 		// Springのcontrollerでは、returnの後にファイル名を書くことによって、
 		// そのファイルを表示してくれる機能がある
 		// 今回の場合は、task_new.htmlが表示される
@@ -66,23 +62,21 @@ public class TaskController {
 		return "task_new";
 
 	}
-	
-	
+
 	// やることリストへのデータの追加を行っているメソッド
 	@PostMapping("/tasks/add")
 	public String createTask(
 			// HTMLから送られる一つのデータにつき、@RequestParamは一つ
-			@RequestParam("name")String name,
-			@RequestParam("goalId")Integer goalId,
+			@RequestParam("name") String name,
+			@RequestParam("goalId") Integer goalId,
 			Model model) {
-			
+
 		// Taskオブジェクトの生成
-		Task task= new Task(name,goalId);
+		Task task = new Task(name, goalId);
 		//itemテーブルへのデータの反映(INSERT)
 		taskRepository.save(task);
 		//「/items」にGETでリクエストしなおせ(リダイレクト)
-		
-		
+
 		// redirectは、redirectの:以降にのパスが書いてある
 		// controllerのメソッドを実行する
 		// 今回の場合は、@GetMapping("/tasks")以下のメソッドを実行する
@@ -92,10 +86,38 @@ public class TaskController {
 		// ・データを削除したとき
 		// つまり、@PostMapping()を書いたときは、リダイレクトを使用
 		// return "redirect:/tasks";
-		return "redirect:/tasks";
+		return "redirect:/goals/" + goalId + "/tasks";
+
+	}
+
+	//編集画面表示
+	@GetMapping("/goals/{goalId}/tasks/{taskId}/edit")
+	public String edit(
+			@PathVariable("taskId") Integer id,
+			Model model) {
+
+		Task task = taskRepository.findById(id).get();
+		model.addAttribute("task", task);
+		
+		return "task_edit";
+
+	}
+
+	@PostMapping("/goal/{goalId}/tasks/{taskId}/edit")
+	public String update(
+			@PathVariable("taskId") Integer id,
+			@RequestParam(value = "name", defaultValue = "") String name) {
+
+		// 1. DBから変更したいデータを取得する
+		Task task = taskRepository.findById(id).get();
+		// 2. そのデータを書き換える
+		task.setName(name);
+
+		// 3. 書き換えたデータを保存する
+		taskRepository.save(task);
+
+		return "redirect:/goals/"+task.getGoalId()+"/tasks";
+
 	}
 
 }
-
-	
-

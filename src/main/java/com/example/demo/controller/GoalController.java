@@ -18,6 +18,7 @@ public class GoalController {
 
 	@Autowired
 	GoalRepository goalRepository;
+
 	//目標一覧表示
 	@GetMapping({ "/", "/goals" })
 	public String Index(Model model) {
@@ -27,26 +28,27 @@ public class GoalController {
 		model.addAttribute("goals", goalList);
 		return "goal";
 	}
-	
+
 	@GetMapping("/goals/add")
 	public String create() {
 		return "goal_add";
 	}
-	
+
 	//新規登録処理
 	@PostMapping("/goals/add")
 	public String create(
-			
-			@RequestParam("goal_name")String name,
+
+			@RequestParam("goal_name") String name,
 			Model model) {
 		//Goalオブジェクトの生成
-		 Goal goal= new Goal(name);
+		Goal goal = new Goal(name);
 		//itemテーブルへのデータの反映(INSERT)
 		goalRepository.save(goal);
 		//「/items」にGETでリクエストしなおせ(リダイレクト)
 		return "redirect:/goals";
 	}
-	
+
+	//編集画面表示
 	@GetMapping("/goal/{id}/edit")
 	public String edit(
 			@PathVariable("id") Integer id,
@@ -57,19 +59,22 @@ public class GoalController {
 		return "goal_edit";
 
 	}
-	
-	
+
 	@PostMapping("/goal/{id}/edit")
 	public String update(
-			@PathVariable("id")Integer id,
-			@RequestParam()
-			Model model) {
-		
+			@PathVariable("id") Integer id,
+			@RequestParam(value = "name", defaultValue = "") String name) {
+
+		// 1. DBから変更したいデータを取得する
 		Goal goal = goalRepository.findById(id).get();
-		model.addAttribute("goal",goal);
-		return "goal_edit";
-		
-		
+		// 2. そのデータを書き換える
+		goal.setName(name);
+
+		// 3. 書き換えたデータを保存する
+		goalRepository.save(goal);
+
+		return "redirect:/goals";
+
 	}
 
 }

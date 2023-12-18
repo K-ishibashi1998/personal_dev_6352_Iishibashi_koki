@@ -33,15 +33,24 @@ public class Task {
 	public Integer getNum() {
 		return num;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	
 
 	public Task() {
 
 	}
 
-	public Task(String name ,Integer goalId) {
+	public Task(String name, Integer goalId) {
 		this.name = name;
 		this.goalId = goalId;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+		}
 
 }
