@@ -53,4 +53,10 @@ public class Task {
 		this.name = name;
 		}
 
+	public void setNum(Integer num) {
+		this.num=num;
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
 }

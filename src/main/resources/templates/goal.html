@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link href="/css/style.css" type="text/css" rel="stylesheet">
 
 <head>
 	<meta charset="UTF-8">
@@ -15,8 +16,9 @@
 
 
 	<table border="1">
-
-		<input type="button" onclick="location.href='/goals/add'" value="追加">
+		<div class="goal_addbutton">
+			<input type="button" onclick="location.href='/goals/add'" value="追加">
+		</div>
 		<tr>
 			<th>目標</th>
 			<th>目標ID</th>
@@ -28,8 +30,8 @@
 				<a th:href="'/goals/'+${goal.id}+'/tasks'">
 					[[${goal.name}]]
 				</a>
-<!--				この書き方は、検索時に用いる書き方-->
-<!--				<a th:href="'tasks/?goalId='+${goal.id}"></a>-->
+				<!--				この書き方は、検索時に用いる書き方-->
+				<!--				<a th:href="'tasks/?goalId='+${goal.id}"></a>-->
 			</td>
 			<td>
 				<!--				<a th:href="/goal/3/edit" th:text="${goal.name}"></a>-->

@@ -69,10 +69,11 @@ public class TaskController {
 			// HTMLから送られる一つのデータにつき、@RequestParamは一つ
 			@RequestParam("name") String name,
 			@RequestParam("goalId") Integer goalId,
+			@RequestParam("num")Integer num,
 			Model model) {
 
 		// Taskオブジェクトの生成
-		Task task = new Task(name, goalId);
+		Task task = new Task(name,goalId);
 		//itemテーブルへのデータの反映(INSERT)
 		taskRepository.save(task);
 		//「/items」にGETでリクエストしなおせ(リダイレクト)
@@ -98,7 +99,7 @@ public class TaskController {
 
 		Task task = taskRepository.findById(id).get();
 		model.addAttribute("task", task);
-		
+
 		return "task_edit";
 
 	}
@@ -106,18 +107,28 @@ public class TaskController {
 	@PostMapping("/goal/{goalId}/tasks/{taskId}/edit")
 	public String update(
 			@PathVariable("taskId") Integer id,
+			@RequestParam(value = "num", defaultValue = "") Integer num,
 			@RequestParam(value = "name", defaultValue = "") String name) {
 
 		// 1. DBから変更したいデータを取得する
 		Task task = taskRepository.findById(id).get();
 		// 2. そのデータを書き換える
 		task.setName(name);
+		task.setNum(num);
 
 		// 3. 書き換えたデータを保存する
 		taskRepository.save(task);
 
-		return "redirect:/goals/"+task.getGoalId()+"/tasks";
+		return "redirect:/goals/" + task.getGoalId() + "/tasks";
 
+	}
+
+	@PostMapping("/goal/{goalId}/tasks/{taskId}/delete")
+	public String delete(@PathVariable("taskId") Integer Id, Model model) {
+
+		taskRepository.deleteById(Id);
+
+		return "redirect:/goals/{goalId}/tasks";
 	}
 
 }

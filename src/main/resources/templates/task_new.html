@@ -27,9 +27,12 @@
 		
 		<input type="text" name="name" placeholder="タスクを入力してください！">
 		<input type="hidden" name="goalId"th:value="${goalId}">
+		<input type="text" name="num"th:value="${goalId}">
+		
 
 		<button >決定</button>
 	</form>
+	<button type="button" onclick="history.back()">戻る</button>
 </body>
 
 </html>
